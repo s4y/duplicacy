@@ -98,7 +98,7 @@ func (client *B2Client) call(url string, method string, requestHeaders map[strin
 	var response *http.Response
 
 	backoff := 0
-	for i := 0; i < 8; i++ {
+	for i := 0; i < 128; i++ {
 		var inputReader *bytes.Reader
 
 		switch input.(type) {
@@ -530,7 +530,7 @@ func (client *B2Client) UploadFile(filePath string, content []byte, rateLimit in
 	var response *http.Response
 
 	backoff := 0
-	for i := 0; i < 8; i++ {
+	for i := 0; i < 128; i++ {
 
 		if client.UploadURL == "" || client.UploadToken == "" {
 			err = client.getUploadURL()
